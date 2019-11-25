@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="AccessAndDisplayPublicData.css">
+    <link href="https://fonts.googleapis.com/css?family=Oregano&display=swap" rel="stylesheet">
+    <title>Senate Loyalty</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-light p-0 mb-4 align-baseline">
+                <div>
+                    <img src="images/logoTgif.jpg" class="rounded align-top" alt="logo TIGF">
+                    <h1 class="d-inline">TGIF</h1>
+                </div>
+                <div class="float-right">
+                    <img src="images/iconoemail.jpg" class="rounded" alt="icono email">
+                    <a href="mailto:nysl@chisoccer.org">info@tgif.net</a>
+                </div>
+            </nav>
+        </header>
+
+        <nav id="menu" class="card rounded-0">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Congress 113</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="house.html">House</a>
+                        <a class="dropdown-item" href="senate.html">Senate</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Attendance</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="house_attendance.html">House</a>
+                        <a class="dropdown-item" href="senate_attendance-.html">Senate</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Party Loyalty</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="house_loyalty.html">House</a>
+                        <a class="dropdown-item" href="senate_loyalty.html">Senate</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="containerVue" id="app">
+            <main>
+                <div class="row">
+                    <div class="col-6">
+                        <h2>Party Loyalty</h2>
+                        <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans
+                            respectively,
+                            tend to be the most faithful in voting for their party's nominee for office and legislation
+                            that
+                            backs
+                            their
+                            party's agenda. </p>
+                    </div>
+                    <div class="col-6">
+                        <h2>Senate at a glance</h2>
+
+                        <table class="table  table-bordered text-center py-0" id="senate_loyalty">
+                            <thead>
+                                <tr>
+                                    <th>Party</th>
+                                    <th>Number of Reps</th>
+                                    <th>% Voted with Prty</th>
+                                </tr>
+                            </thead>
+                            <tbody id="BodySenate_loyalty" class="P-0">
+                                <tr v-for="element in glance(senadores)">
+                                    <td>
+                                        {{ element.nombrePartido }}</td>
+                                    <td>{{ element.canPartido }}</td>
+                                    <td>{{ element.promedio }}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <h2>Least Loyal (Bottom 10% of Party)</h2>
+                        <table class="table  table-bordered text-center py-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Number Party Votes</th>
+                                    <th>% Party Votes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bottom_senate_loyalty">
+                                <tr v-for="element in LeastMostLoyal(senadores , false).bottomLoyalty">
+                                    <td><a class="urlName" v-bind:href="element.url"
+                                            target="_blank">{{element.name}}</a></td>
+                                    <td>{{ element.votes }}</td>
+                                    <td>{{ element.pctVotes }}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-6">
+                        <h2>Most Loyal (Top 10% of Party)</h2>
+                        <table class="table  table-bordered text-center py-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Number Party Votes</th>
+                                    <th>% Party Votes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topLoyaltySenate">
+                                <tr v-for="element in LeastMostLoyal(senadores , false).topLoyalty">
+                                    <td><a class="urlName" v-bind:href="element.url"
+                                            target="_blank">{{ element.name }}</a></td>
+                                    <td>{{ element.votes }}</td>
+                                    <td>{{ element.pctVotes }}%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="js/vue.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

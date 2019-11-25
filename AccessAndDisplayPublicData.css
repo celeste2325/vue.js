@@ -1,0 +1,55 @@
+body {
+  font-family: "Oregano", cursive;
+  font-size: 1.2rem;
+  color: #585858;
+  margin: 10px 0;
+ 
+}
+
+th {
+  width: 20%;
+  padding: 0 !important;
+  font-weight: normal;
+}
+#menu {
+  margin-bottom: 90px;
+}
+#menu,
+.fondoFooter {
+  background-color: #f3f2f2;
+}
+
+.nav-link {
+  color: #17a2b8;
+  padding: 10px !important;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #afacac !important;
+  color: #585858 !important;
+  font-weight: 500 !important;
+  border-radius: 0;
+}
+nav img {
+  width: 50px;
+}
+.urlName{
+  text-decoration: underline !important;
+}
+
+.dropdown-item:hover {
+  background-color: #afacac !important;
+}
+
+footer p {
+  margin: 0 !important;
+  padding: 10px !important;
+}
+main p {
+  text-indent: 20px;
+}
+@media screen and (min-width: 1200px){
+.container {
+    max-width: 1245px;
+  }
+}
